@@ -1,0 +1,41 @@
+syntax="proto3";
+option java_multiple_files=true;
+option java_package="com.rahul.greeting";
+
+
+message Greeting{
+  string First_name=1;
+  string Second_name=2;
+}
+message GreetingRequest{
+  Greeting greeting=1;
+}
+message GreetingResponse{
+  string response=1;
+
+}
+message ContinousGreetRequest{
+Greeting greeting=1;
+}
+message ContinousGreetingResponse{
+  string response=1;
+
+}
+message LongGreetRequest{
+  Greeting greeting=1;
+}
+message LongGreetResponse{
+  string response=1;
+}
+service GreetingService{
+  //unary call
+  rpc greet(GreetingRequest) returns (GreetingResponse){
+  }
+  //server side streaming
+  rpc continousGreet(ContinousGreetRequest) returns (stream ContinousGreetingResponse){//
+  }
+  //client side streaming
+  rpc longreet(stream LongGreetRequest) returns (LongGreetResponse){
+
+  }
+}
